@@ -17,5 +17,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'core.views.home', name='home'),
+    url(r'^pegawai/$', 'core.views.pegawai', name='pegawai'),
+    url(r'^pegawai/tambah/$', 'core.views.tambah_pegawai', name='tambah_pegawai'),
+    url(r'^pegawai/(?P<id>.+)/$', 'core.views.edit_pegawai', name='edit_pegawai'),
 ]
