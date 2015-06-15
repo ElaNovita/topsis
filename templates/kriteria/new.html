@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block konten %}
+    <h2>Tambah Kriteria</h2><br/>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+
+            <form method="POST" action="">{% csrf_token %}
+                <div class="form-group">
+                    <label>Nama Kriteria</label>
+                    <input type="text" class="form-control" name="nama"
+                           placeholder="Nama kriteria" autofocus="" required="">
+                </div>
+
+                <div class="form-group">
+                    <label>Type</label><br/>
+                    <label class="radio-inline">
+                        <input type="radio" name="type" id="inlineRadio1"
+                               value="1" required=""> Cost
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="type" id="inlineRadio2"
+                               value="2" checked required=""> Benefit
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Bobot</label>
+                    <input type="text" class="form-control" name="bobot"
+                           placeholder="Bobot kriteria" required="">
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Simpan"/>
+                </div>
+            </form>
+            {% if msg %}
+            <div class="alert alert-{{ msg.status }}" role="alert">{{ msg.msg }}</div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

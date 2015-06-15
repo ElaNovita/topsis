@@ -22,4 +22,9 @@ urlpatterns = [
     url(r'^pegawai/$', 'core.views.pegawai', name='pegawai'),
     url(r'^pegawai/tambah/$', 'core.views.tambah_pegawai', name='tambah_pegawai'),
     url(r'^pegawai/(?P<id>.+)/$', 'core.views.edit_pegawai', name='edit_pegawai'),
+
+    url(r'^kriteria/$', 'core.views.kriteria', name='kriteria'),
+    url(r'^kriteria/tambah/$', 'core.views.tambah_kriteria', name='tambah_kriteria'),
+
+    url(r'^penilaian/$', 'core.views.penilaian', name='penilaian'),
 ]

@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block konten %}
+    <h2>Tambah Pegawai</h2><br/>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {% if msg %}
+                <div class="alert alert-{{ msg.status }}" role="alert">{{ msg.msg }}</div>
+            {% endif %}
+            <form method="POST" action=""> {% csrf_token %}
+                <div class="form-group">
+                    <label>NIK</label>
+                    <input type="text" class="form-control" name="nik"
+                           required=""
+                           placeholder="NIK">
+                </div>
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" class="form-control" name="nama"
+                           required=""
+                           placeholder="Nama Pegawai">
+                </div>
+                <div class="form-group">
+                    <label>Jenis Kelamin</label><br/>
+                    <label class="radio-inline">
+                        <input type="radio" name="jk" id="inlineRadio1"
+                               value="l" checked required=""> Laki-laki
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="jk" id="inlineRadio2"
+                               value="p" required=""> Perempuan
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Alamat</label>
+                    <textarea class="form-control" name="alamat" id="" cols="3"
+                              placeholder="Alamat" required=""></textarea>
+                </div>
+                <hr/>
+                {% if kriterias %}
+                    {% for k in kriterias %}
+                        <div class="form-group">
+                            <label for="{{ k.nama }}">{{ k.nama }}</label>
+                            <select name="kriteria" id="{{ k.nama }}"
+                                    required=""
+                                    class="form-control">
+                                <option value="" disabled selected>Pilih
+                                </option>
+                                <option value="{{ k.id }}-1">Kurang</option>
+                                <option value="{{ k.id }}-2">Cukup</option>
+                                <option value="{{ k.id }}-3">Baik</option>
+                                <option value="{{ k.id }}-4">Sangat Baik
+                                </option>
+                            </select>
+
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Belum ada kriteria</p>
+                {% endif %}
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary"
+                           value="Simpan"/>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

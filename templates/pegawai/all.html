@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block konten %}
+    <h2>
+        Pegawai
+        <a href="{% url 'tambah_pegawai' %}" class="btn btn-primary pull-right">
+            <i class="glyphicon glyphicon-plus"></i> Tambah
+        </a>
+    </h2><br/>
+
+    {% if pegawais %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th>JK</th>
+            <th>Alamat</th>
+            <th>#</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in pegawais %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ p.nik}}</td>
+            <td>{{ p.nama }}</td>
+            <td>{{ p.jk }}</td>
+            <td>{{ p.alamat }}</td>
+            <td>
+                <button class="btn btn-info btn-xs">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </button>
+                <button class="btn btn-danger btn-xs">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+{% endblock %}

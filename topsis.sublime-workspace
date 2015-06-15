@@ -191,6 +191,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "templates/layout.html",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/home.html",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -288,10 +304,16 @@
 	},
 	"expanded_folders":
 	[
-		"/media/d/development/projects/topsis"
+		"/media/d/development/projects/topsis",
+		"/media/d/development/projects/topsis/templates"
 	],
 	"file_history":
 	[
+		"/media/d/development/projects/topsis/templates/pegawai/all.html",
+		"/media/d/development/projects/topsis/templates/pegawai/view.html",
+		"/media/d/development/projects/topsis/topsis/settings.py",
+		"/media/d/development/projects/topsis/topsis.sublime-project",
+		"/media/d/development/projects/edsite_project.sublime-project",
 		"/home/e/Desktop/djangoela/djangoela/urls.py",
 		"/media/d/development/projects/nodejs/nodecommerce/server.js",
 		"/home/e/Desktop/djangoela/apps/blog/views.py",
@@ -414,12 +436,7 @@
 		"/media/d/development/projects/php/task/public/css/app.css",
 		"/media/d/development/projects/php/task/bootstrap/app.php",
 		"/media/d/development/projects/php/task/vendor/composer/autoload_psr4.php",
-		"/media/d/development/projects/php/task/resources/views/home.blade.php",
-		"/media/d/development/projects/php/task/vendor/symfony/http-kernel/Symfony/Component/HttpKernel/Controller/ControllerReference.php",
-		"/media/d/development/projects/php/task/database/migrations/2015_05_13_020130_create_board_table.php",
-		"/media/d/development/projects/php/task/database/migrations/2015_05_13_055517_create_boards_table.php",
-		"/media/d/development/projects/php/task/database/migrations/2015_05_13_055521_create_cards_table.php",
-		"/media/d/development/projects/php/task/database/migrations/2015_05_13_055525_create_todos_table.php"
+		"/media/d/development/projects/php/task/resources/views/home.blade.php"
 	],
 	"find":
 	{
@@ -598,8 +615,183 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "templates/layout.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "templates/home.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -649,6 +841,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"sett",
+				"topsis/settings.py"
+			],
 			[
 				"newcard",
 				"resources/views/newcard.blade.php"

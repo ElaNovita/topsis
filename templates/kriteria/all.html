@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block konten %}
+    <h2>
+        Kriteria
+        <a href="{% url 'tambah_kriteria' %}"
+           class="btn btn-primary pull-right">
+            <i class="glyphicon glyphicon-plus"></i> Tambah
+        </a>
+    </h2>
+    {% if kriterias %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nama Kriteria</th>
+                        <th>Type</th>
+                        <th>Bobot</th>
+                        <th>#</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for k in kriterias %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ k.nama }}</td>
+                            <td>{{ k.get_type_display }}</td>
+                            <td>{{ k.bobot }}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                </button>
+                                <button class="btn btn-danger btn-xs">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
