@@ -27,4 +27,7 @@ urlpatterns = [
     url(r'^kriteria/tambah/$', 'core.views.tambah_kriteria', name='tambah_kriteria'),
 
     url(r'^penilaian/$', 'core.views.penilaian', name='penilaian'),
+
+    url(r'^login/$', 'core.views.user_login', name='login'),
+    url(r'^logout/$', 'core.views.user_logout', name='logout'),
 ]

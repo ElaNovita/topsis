@@ -1,20 +1,25 @@
 from collections import OrderedDict
-
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 import topsis
 from .models import Pegawai, Kriteria, Penilaian
 
 
+@login_required
 def home(req):
     return render(req, 'home.html')
 
 
+@login_required
 def pegawai(req):
     pegawais = Pegawai.objects.all()
     return render(req, 'pegawai/all.html', {'pegawais': pegawais})
 
 
+@login_required
 def tambah_pegawai(req):
     kriterias = Kriteria.objects.all().order_by('id')
     if req.POST:
@@ -49,15 +54,18 @@ def tambah_pegawai(req):
     return render(req, 'pegawai/new.html', locals())
 
 
+@login_required
 def edit_pegawai(req, id):
     return render(req, 'pegawai/edit.html')
 
 
+@login_required
 def kriteria(req):
     kriterias = Kriteria.objects.all()
     return render(req, 'kriteria/all.html', {'kriterias': kriterias})
 
 
+@login_required
 def tambah_kriteria(req):
     if req.POST:
         nama = req.POST['nama']
@@ -74,6 +82,7 @@ def tambah_kriteria(req):
     return render(req, 'kriteria/new.html', locals())
 
 
+@login_required
 def penilaian(req):
     kriterias = Kriteria.objects.all()
     pegawais = Pegawai.objects.all().order_by('id')
@@ -116,3 +125,22 @@ def penilaian(req):
     preferensi_user = sorted(preferensi_user, key=lambda x: x[1], reverse=True)
 
     return render(req, 'penilaian.html', locals())
+
+
+def user_login(req):
+    if req.POST:
+        username = req.POST['username']
+        password = req.POST['password']
+        try:
+            user = authenticate(username=username, password=password)
+            login(req, user)
+            return HttpResponseRedirect('/')
+        except:
+            return HttpResponseRedirect('/login')
+
+    return render(req, 'login.html', locals())
+
+
+def user_logout(req):
+    logout(req)
+    return HttpResponseRedirect('/login')

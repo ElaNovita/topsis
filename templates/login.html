@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login...</title>
+    <link rel="stylesheet" href="{% static 'libs/bs/css/bootstrap.css' %}"/>
+</head>
+<body>
+    <div class="container" style="margin-top: 300px">
+        <div class="row">
+            <div class="col-md-offset-5 col-md-3">
+                <form action="" method="POST"> {% csrf_token %}
+                <div class="form-login">
+                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" name="username" />
+                </br>
+                <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="password" name="password" />
+                </br>
+                <div class="wrapper">
+                <span class="group-btn">     
+                    <input type="submit" name="submit" value="Login" class="btn btn-primary btn-md">
+                </span>
+                </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
