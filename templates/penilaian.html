@@ -1,0 +1,195 @@
+{% extends 'layout.html' %}
+
+{% block konten %}
+    <h2>Penilaian</h2><br/>
+    <hr/>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+            <p>Bobot Kriteria</p>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    {% for k in kriterias %}
+                        <th>{{ k.nama }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {% for k in kriterias %}
+                        <td>{{ k.bobot }}</td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+            <p>Data Pegawai</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        {% for k in kriterias %}
+                            <th>{{ k.nama }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                {% for i,j in data_mentah.items %}
+                    <tr>
+                        <td>{{ i }}</td>
+                        {% for k in j %}
+                            <td>{{ k }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+            <p>Matriks D
+                <span>(perbandingan kriteria dengan alternatif)</span>
+            </p>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nama</th>
+                    {% for k in kriterias %}
+                        <th>{{ k.nama }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for i,j in d.items %}
+                    <tr>
+                        <td>{{ i }}</td>
+                        {% for k in j %}
+                            <td>{{ k }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+            <p>Matriks R
+                <span>(Matriks normalisasi)</span>
+            </p>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nama</th>
+                    {% for k in kriterias %}
+                        <th>{{ k.nama }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for i,j in r.items %}
+                    <tr>
+                        <td>{{ i }}</td>
+                        {% for k in j %}
+                            <td>{{ k|floatformat:3 }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+            <p>Matriks W
+                <span>(pembobotan pada matriks yang telah dinormalisasi)</span>
+            </p>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nama</th>
+                    {% for k in kriterias %}
+                        <th>{{ k.nama }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for i,j in v.items %}
+                    <tr>
+                        <td>{{ i }}</td>
+                        {% for k in j %}
+                            <td>{{ k|floatformat:3 }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+            <p>Solusi Ideal</p>
+            <table class="table table-bordered">
+                <tr>
+                    <td>Positif</td>
+                    {% for s in solusi_ideal.positive %}
+                        <td>{{ s|floatformat:3 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Negatif</td>
+                    {% for s in solusi_ideal.negative %}
+                        <td>{{ s|floatformat:3 }}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+            <p>Jarak terhadap solusi ideal</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Positif</th>
+                        <th>Negatif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for i, j, k in jarak_tuple %}
+                    <tr>
+                        <td>{{ i.nama }}</td>
+                        <td>{{ j|floatformat:3 }}</td>
+                        <td>{{ k|floatformat:3 }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+            <p>Solusi Akhir
+                <span>(Menghitung kedekatan relatif terhadap solusi ideal)</span>
+            </p>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Nilai</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for p, v in preferensi_user %}
+                <tr>
+                    <td width="1">{{ forloop.counter }}</td>
+                    <td>{{ p }}</td>
+                    <td>{{ v|floatformat:3 }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

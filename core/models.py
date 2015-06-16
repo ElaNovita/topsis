@@ -24,6 +24,12 @@ class Pegawai(models.Model):
     alamat = models.TextField()
     jk = models.CharField(choices=JK_CHOICES, max_length=1)
 
+    def matriks_d(self):
+        return self.nilai.values_list('nilai', flat=True)
+
+    def numbers(self):
+        return self.nilai.values_list('number', flat=True)
+
     def __unicode__(self):
         return self.nama
 
@@ -40,6 +46,7 @@ class Kriteria(models.Model):
 class Penilaian(models.Model):
     pegawai = models.ForeignKey(Pegawai, related_name='nilai')
     kriteria = models.ForeignKey(Kriteria)
+    number = models.IntegerField()
     nilai = models.IntegerField()
 
     def __unicode__(self):

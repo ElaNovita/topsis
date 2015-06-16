@@ -1,4 +1,5 @@
 from math import sqrt
+from collections import OrderedDict
 
 # bobot  C1 C2 C3 C4 C5
 w = [5, 3, 4, 4, 2]
@@ -42,10 +43,13 @@ def transform_to_v(matriks_R, w):
 
 
 def A(matriks_V, rules):  # solusi ideal positif/negatif
-    data = {
-        'positive': [],
-        'negative': []
-    }
+    data = OrderedDict()
+    # data = {
+    #     'positive': [],
+    #     'negative': []
+    # }
+    data['positive'] = []
+    data['negative'] = []
 
     zipped = zip(*matriks_V)
     for i in range(len(matriks_V[0])):
@@ -60,10 +64,13 @@ def A(matriks_V, rules):  # solusi ideal positif/negatif
 
 
 def S(matriks_V, A):  # jarak terhadap solusi negatif/positif
-    data = {
-        'positive': [],
-        'negative': []
-    }
+    data = OrderedDict()
+    # data = {
+    #     'positive': [],
+    #     'negative': []
+    # }
+    data['positive'] = []
+    data['negative'] = []
 
     for i in range(len(matriks_V)):
         p_total = 0
@@ -97,10 +104,12 @@ def best_alternatives(matriks_D, w, rules):
     return cs
 
 
-alternatif = best_alternatives(D, w, rules)
-print alternatif
-print
-
-best_of_all = sorted(alternatif, reverse=True)
-for i in best_of_all:
-    print "Alternatif %s: dengan nilai %s" % (alternatif.index(i) + 1, i)
+def check_rules(number):
+    if number >= 90:
+        return 4
+    elif number >= 70:
+        return 3
+    elif number >= 60:
+        return 2
+    else:
+        return 1

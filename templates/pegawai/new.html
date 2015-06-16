@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <label>NIK</label>
                     <input type="text" class="form-control" name="nik"
-                           required=""
+                           required="" autofocus=""
                            placeholder="NIK">
                 </div>
                 <div class="form-group">
@@ -41,7 +41,9 @@
                     {% for k in kriterias %}
                         <div class="form-group">
                             <label for="{{ k.nama }}">{{ k.nama }}</label>
-                            <select name="kriteria" id="{{ k.nama }}"
+                            <input type="text" id="{{ k.nama }}" name="kriteria"
+                                   class="form-control" placeholder="1-100" required="" />
+                            <!--select name="kriteria" id="{{ k.nama }}"
                                     required=""
                                     class="form-control">
                                 <option value="" disabled selected>Pilih
@@ -51,8 +53,7 @@
                                 <option value="{{ k.id }}-3">Baik</option>
                                 <option value="{{ k.id }}-4">Sangat Baik
                                 </option>
-                            </select>
-
+                            </select-->
                         </div>
                     {% endfor %}
                 {% else %}

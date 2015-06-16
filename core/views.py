@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from .topsis import *
+from collections import OrderedDict
 
+from django.shortcuts import render
+
+import topsis
 from .models import Pegawai, Kriteria, Penilaian
 
 
@@ -14,22 +16,29 @@ def pegawai(req):
 
 
 def tambah_pegawai(req):
+    kriterias = Kriteria.objects.all().order_by('id')
     if req.POST:
         nik = req.POST['nik']
         nama = req.POST['nama']
         jk = req.POST['jk']
         alamat = req.POST['alamat']
-        kriterias = req.POST.getlist('kriteria')
-        print kriterias
+        kriteria_values = req.POST.getlist('kriteria')
+        print kriteria_values
         try:
             p = Pegawai(nik=nik, nama=nama, jk=jk, alamat=alamat)
             p.save()
 
-            for k in kriterias:
-                x = k.split('-')
-                print x,
-                kr = Kriteria.objects.get(id=x[0])
-                nilai = Penilaian(pegawai=p, kriteria=kr, nilai=x[1])
+            # for k in kriteria_values:
+            #     x = k.split('-')
+            #     print x,
+            #     kr = Kriteria.objects.get(id=x[0])
+            #     nilai = Penilaian(pegawai=p, kriteria=kr, nilai=x[1])
+            #     nilai.save()
+            for k, v in zip(kriterias, kriteria_values):
+                nilai = Penilaian(pegawai=p,
+                                  kriteria=k,
+                                  nilai=topsis.check_rules(int(v)),
+                                  number=int(v))
                 nilai.save()
 
             msg = {"status": "success", "msg": "Tersimpan !"}
@@ -37,7 +46,6 @@ def tambah_pegawai(req):
             print e
             msg = {"status": "danger", "msg": "Gagal !"}
 
-    kriterias = Kriteria.objects.all()
     return render(req, 'pegawai/new.html', locals())
 
 
@@ -67,5 +75,44 @@ def tambah_kriteria(req):
 
 
 def penilaian(req):
-    data = Penilaian.objects.all()
-    return render(req, 'penilaian.html')
+    kriterias = Kriteria.objects.all()
+    pegawais = Pegawai.objects.all().order_by('id')
+
+    bobot = kriterias.values_list('bobot', flat=True)
+    rules = kriterias.values_list('type', flat=True)
+
+    data_mentah = OrderedDict()
+    for i in pegawais:
+        data_mentah[i.nama] = i.numbers()
+
+    d = OrderedDict()
+    for i in pegawais:
+        d[i.nama] = i.matriks_d()
+
+    matriks_d = []
+    for i in d:
+        matriks_d.append(d[i])
+
+    r = OrderedDict()
+    matriks_r = topsis.transform_to_r(matriks_d)
+    for p, k in zip(pegawais, matriks_r):
+        r[p.nama] = k
+
+    v = OrderedDict()
+    matriks_v = topsis.transform_to_v(matriks_r, bobot)
+    for p, k in zip(pegawais, matriks_v):
+        v[p.nama] = k
+
+    solusi_ideal = topsis.A(matriks_v, rules)
+    jarak_alternatif = topsis.S(matriks_v, solusi_ideal)
+    jarak_tuple = zip(pegawais,
+                      jarak_alternatif['positive'],
+                      jarak_alternatif['negative'])
+
+    preferensi_user = []
+    preferensi = topsis.C(jarak_alternatif)
+    for i in zip(pegawais, preferensi):
+        preferensi_user.append([i[0].nama, i[1]])
+    preferensi_user = sorted(preferensi_user, key=lambda x: x[1], reverse=True)
+
+    return render(req, 'penilaian.html', locals())
